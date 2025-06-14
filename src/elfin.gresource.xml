@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/kerembayulgen/elfin">
-    <file preprocess="xml-stripblanks">gtk/movie_page.ui</file>
     <file preprocess="xml-stripblanks">gtk/window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help_overlay.ui</file>
     <file preprocess="xml-stripblanks">gtk/media_cover.ui</file>
