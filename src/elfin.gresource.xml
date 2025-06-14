@@ -8,7 +8,7 @@
     <file preprocess="xml-stripblanks">gtk/sidebar.ui</file>
     <file preprocess="xml-stripblanks">gtk/initial_setup.ui</file>
     <file preprocess="xml-stripblanks">gtk/media_grid.ui</file>
-    <file preprocess="xml-stripblanks">../com.kerembayulgen.elfin.metainfo.xml</file>
+    <file preprocess="xml-stripblanks">com.kerembayulgen.elfin.metainfo.xml</file>
   </gresource>
   <gresource prefix="/com/kerembayulgen/elfin/icons/scalable/actions">
     <file alias="audio-x-generic-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/audio-x-generic-symbolic.svg</file>
