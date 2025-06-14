@@ -1,0 +1,36 @@
+#!@PYTHON@
+
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+import os
+import sys
+import signal
+import locale
+import gettext
+
+VERSION = '@VERSION@'
+pkgdatadir = '@pkgdatadir@'
+localedir = '@localedir@'
+
+sys.path.insert(1, pkgdatadir)
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+locale.bindtextdomain('elfin', localedir)
+locale.textdomain('elfin')
+gettext.install('elfin', localedir)
+
+if __name__ == '__main__':
+    import gi
+    gi.require_version (
+	  'Gtk', '4.0'
+	)
+    gi.require_version (
+	  'Gdk', '4.0'
+	)
+
+    from gi.repository import Gio, Gdk, Gtk
+    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'elfin.gresource'))
+    resource._register()
+
+    from elfin import main
+    sys.exit(main.main(VERSION))

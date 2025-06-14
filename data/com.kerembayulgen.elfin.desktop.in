@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Elfin
+Exec=elfin
+Icon=com.kerembayulgen.elfin
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

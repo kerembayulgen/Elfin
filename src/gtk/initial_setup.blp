@@ -1,0 +1,41 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+using Adw 1;
+
+template $ElfinInitialSetup : Box {
+  Adw.ToastOverlay toast_overlay {
+    Box {
+      orientation: vertical;
+      Adw.StatusPage status_page {
+        hexpand: true;
+        title: "Elfin";
+        description: _("Navigate your Jellyfin library in a sleek way");
+        icon-name: "org.gnome.Adwaita1.Demo-symbolic";
+      }
+      ListBox databox {
+        styles ["boxed-list-separate"]
+        margin-start: 50;
+        margin-end: 50;
+        Adw.EntryRow serveraddress {
+          title: _("Server Address");
+          input-purpose: url;
+        }
+        Adw.EntryRow username {
+          title: _("Username");
+          input-purpose: name;
+        }
+        Adw.PasswordEntryRow password {
+          title: _("User Password");
+        }
+      }
+      Button connect_button {
+        styles ["suggested-action", "pill"]
+        label: _("Connect");
+        margin-top: 20;
+        halign: center;
+      }
+    }
+  }
+}

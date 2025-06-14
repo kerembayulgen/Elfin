@@ -1,0 +1,93 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+using Adw 1;
+
+template $ElfinSidebar: Box {
+  orientation: vertical;
+  Adw.HeaderBar {
+    styles ["vertical", "flat"]
+    [end]
+    MenuButton {
+      primary: true;
+      icon-name: "open-menu-symbolic";
+      tooltip-text: _("Main Menu");
+      menu-model: primary_menu;
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    Button HomeFolder {
+      action-name: "win.open-home";
+      margin-top: 10;
+      valign: start;
+      styles ["navigation-sidebar", "flat"]
+      hexpand: true;
+
+      Box {
+        spacing: 6;
+        Image icon {
+          margin-start: 12;
+          icon-name: "go-home-symbolic";
+        }
+        Label label {
+          hexpand: true;
+          halign: start;
+          label: _("Home");
+        }
+      }
+    }
+
+    Label library_text {
+      margin-top: 10;
+      margin-start: 12;
+      label: _("Library");
+      visible: false;
+      styles ["dim-label", "caption-heading"]
+      halign: start;
+    }
+
+    ListBox library_list {
+      valign: start;
+      styles ["navigation-sidebar"]
+      hexpand: true;
+    }
+
+    Label playlist_text {
+      margin-top: 10;
+      margin-start: 12;
+      visible: false;
+      label: _("Playlists");
+      styles ["dim-label", "caption-heading"]
+      halign: start;
+    }
+
+    ListBox playlist_list {
+      valign: start;
+      styles ["navigation-sidebar"]
+      hexpand: true;
+    }
+  }
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: _("_About Elfin");
+      action: "app.about";
+    }
+  }
+}

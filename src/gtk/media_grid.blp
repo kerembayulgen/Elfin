@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+
+template $ElfinMediaGrid: ScrolledWindow {
+  GridView movie_grid {
+    min-columns: 1;
+    max-columns: 20;
+    hscroll-policy: minimum;
+    vscroll-policy: natural;
+    orientation: vertical;
+    single-click-activate: true;
+    overflow: hidden;
+    vexpand: true;
+  }
+}

@@ -1,0 +1,46 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+
+template $ElfinMediaCover: Box {
+  halign: center;
+  margin-bottom: 3;
+  margin-end: 12;
+  margin-start: 12;
+  margin-top: 9;
+  valign: end;
+  width-request: 120;
+
+  Box content_box {
+    styles ["vertical"]
+    orientation: vertical;
+
+    Box image_container {
+      Frame image_frame {
+        valign: end;
+        Picture pic {
+          content-fit: contain;
+          halign: fill;
+        }
+      }
+    }
+
+    Label label {
+      styles ["caption-heading"]
+      margin-top: 9;
+      halign: fill;
+      valign: fill;
+      wrap-mode: word_char;
+      ellipsize: end;
+    }
+    Label year {
+      styles ["caption-heading", "dimmed"]
+      margin-top: 4;
+      halign: fill;
+      valign: fill;
+      wrap-mode: word_char;
+      ellipsize: end;
+    }
+  }
+}

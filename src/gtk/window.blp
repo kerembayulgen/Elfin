@@ -1,0 +1,48 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+using Adw 1;
+
+template $ElfinWindow: Adw.ApplicationWindow {
+  title: _("Elfin");
+  default-width: 800;
+  default-height: 600;
+
+  content: Adw.OverlaySplitView split {
+    sidebar-width-fraction: 0.3;
+    show-sidebar: bind sidebar_toggle.active;
+    sidebar: Adw.NavigationPage {
+      title: "Elfin";
+      $ElfinSidebar sidebar {}
+    };
+
+    content: Adw.NavigationPage {
+      Box content_box {
+        orientation: vertical;
+
+        Adw.HeaderBar content_headerbar {
+          show-title: false;
+          styles ["flat"]
+
+          [end]
+          Button {
+            tooltip-text: _("Shuffle");
+            icon-name: "playlist-shuffle-symbolic";
+          }
+          [start]
+          ToggleButton sidebar_toggle {
+            icon-name: "dock-right-symbolic";
+            tooltip-text: _("Toggle sidebar");
+            active: true;
+          }
+        }
+
+        Stack content_stack {
+          $ElfinInitialSetup initial_setup {}
+          $ElfinMediaGrid grid_view {}
+        }
+      }
+    };
+  };
+}

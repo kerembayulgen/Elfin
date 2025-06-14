@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+
+template $ElfinLibraryFolder: Box {
+  Image icon {}
+
+  Label label {
+  hexpand: true;
+  }
+
+  [end]
+  MenuButton button {
+    styles ["flat"]
+    icon-name: "view-more-symbolic";
+    menu-model: movie_options;
+  }
+}
+
+
+menu movie_options {
+  section {
+    item {
+      label: _("Edit Metadata");
+      action: "movie.metadata";
+    }
+    item {
+      label: _("Edit Images");
+      action: "movie.images";
+    }
+    item {
+      label: _("Refresh Metadata");
+      action: "movie.refresh";
+    }
+  }
+}

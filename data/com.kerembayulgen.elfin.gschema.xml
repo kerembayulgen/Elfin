@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="elfin">
+	<schema id="com.kerembayulgen.elfin" path="/com/kerembayulgen/elfin/">
+	  <key name="serveraddress" type="s">
+      <default>''</default>
+    </key>
+	  	<key name="username" type="s">
+      <default>''</default>
+    </key>
+	</schema>
+</schemalist>

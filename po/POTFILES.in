@@ -1,0 +1,12 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/com.kerembayulgen.elfin.desktop.in
+data/com.kerembayulgen.elfin.metainfo.xml.in
+data/com.kerembayulgen.elfin.gschema.xml
+src/gtk/help_overlay.blp
+src/gtk/initial_setup.blp
+src/gtk/library_folder.blp
+src/gtk/media_cover.blp
+src/gtk/media_grid.blp
+src/gtk/sidebar.blp
+src/gtk/window.blp

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/kerembayulgen/elfin">
+    <file preprocess="xml-stripblanks">gtk/movie_page.ui</file>
+    <file preprocess="xml-stripblanks">gtk/window.ui</file>
+    <file preprocess="xml-stripblanks">gtk/help_overlay.ui</file>
+    <file preprocess="xml-stripblanks">gtk/media_cover.ui</file>
+    <file preprocess="xml-stripblanks">gtk/library_folder.ui</file>
+    <file preprocess="xml-stripblanks">gtk/sidebar.ui</file>
+    <file preprocess="xml-stripblanks">gtk/initial_setup.ui</file>
+    <file preprocess="xml-stripblanks">gtk/media_grid.ui</file>
+    <file preprocess="xml-stripblanks">../com.kerembayulgen.elfin.metainfo.xml</file>
+  </gresource>
+  <gresource prefix="/com/kerembayulgen/elfin/icons/scalable/actions">
+    <file alias="audio-x-generic-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/audio-x-generic-symbolic.svg</file>
+    <file alias="video-reel-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/video-reel-symbolic.svg</file>
+    <file alias="open-book-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/open-book-symbolic.svg</file>
+    <file alias="tv-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/tv-symbolic.svg</file>
+    <file alias="playlist-shuffle-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/playlist-shuffle-symbolic.svg</file>
+    <file alias="dock-right-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/dock-right-symbolic.svg</file>
+    <file alias="edit-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/edit-symbolic.svg</file>
+    <file alias="playlist-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/playlist-symbolic.svg</file>
+    <file alias="go-home-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/go-home-symbolic.svg</file>
+    <file alias="document-edit-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/document-edit-symbolic.svg</file>
+  </gresource>
+</gresources>
