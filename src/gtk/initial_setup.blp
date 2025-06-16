@@ -8,6 +8,10 @@ template $ElfinInitialSetup : Box {
   Adw.ToastOverlay toast_overlay {
     Box {
       orientation: vertical;
+      Adw.HeaderBar content_headerbar {
+          show-title: false;
+          styles ["flat"]
+      }
       Adw.StatusPage status_page {
         hexpand: true;
         title: "Elfin";

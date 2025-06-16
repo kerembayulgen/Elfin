@@ -1,0 +1,76 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright 2025 Kerem Bayülgen
+
+using Gtk 4.0;
+using Adw 1;
+
+template $ElfinMetadataDialog : Adw.Dialog {
+  title: "Edit Metadata";
+  content-width: 720;
+  content-height: 600;
+  Box main_box {
+    orientation: vertical;
+    Adw.HeaderBar header {
+      styles ["flat"]
+    }
+    ScrolledWindow window {
+      vexpand: true;
+      hexpand: true;
+      Box scrolled_box {
+        margin-start: 50;
+        margin-end: 50;
+        margin-top: 25;
+        orientation: vertical;
+        Adw.PreferencesGroup main_group {
+          title: "General";
+          margin-bottom: 25;
+          ListBox databox {
+            styles ["boxed-list"]
+            Adw.ActionRow path {
+              selectable: false;
+              styles ["property"]
+              title: _("Path");
+            }
+            Adw.EntryRow title {
+              title: _("Title");
+            }
+            Adw.EntryRow sort_title {
+              title: _("Sort Title");
+            }
+            Adw.EntryRow overview {
+              title: _("Overview");
+            }
+            Adw.EntryRow year {
+              title: _("Year");
+            }
+          }
+        }
+        Adw.PreferencesGroup genre_group {
+          title: _("Genres");
+        }
+        Adw.WrapBox genre_box {
+          line-spacing: 6;
+          child-spacing: 6;
+          margin-bottom: 25;
+
+          Button add_more {
+            icon-name: "list-add-symbolic";
+            styles ["flat", "circular"]
+          }
+        }
+        Adw.PreferencesGroup people_group {
+          title: _("Cast &amp; Crew");
+        }
+        ListBox people_list {
+          styles ["boxed-list"]
+          selection-mode: none;
+          margin-bottom: 25;
+
+          Adw.ExpanderRow add_another {
+            title: "Add Person";
+          }
+        }
+      }
+    }
+  }
+}

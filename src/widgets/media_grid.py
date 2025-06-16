@@ -50,7 +50,7 @@ class ElfinMediaGrid(Gtk.ScrolledWindow):
             )
             if folder["CollectionType"] == "playlists":
                 for playlist in item_definition["Items"]:
-                    item = ElfinLibraryFolder(playlist["Id"])
+                    item = ElfinLibraryFolder(playlist["Id"], self.client)
                     item.set_label(playlist["Name"])
                     item.set_icon("playlist")
                     item.label.set_halign(Gtk.Align.START)
@@ -59,7 +59,7 @@ class ElfinMediaGrid(Gtk.ScrolledWindow):
                     root.sidebar.playlist_list.append(row)  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType]
 
                 continue
-            lib_folder = ElfinLibraryFolder(folder["Id"])
+            lib_folder = ElfinLibraryFolder(folder["Id"], self.client)
             lib_folder.set_label(folder["Name"])
             lib_folder.set_icon(folder["CollectionType"])
             lib_folder.label.set_halign(Gtk.Align.START)
@@ -73,7 +73,7 @@ class ElfinMediaGrid(Gtk.ScrolledWindow):
             root.grid_view.movie_grid.set_factory(self.grid_factory)  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType]
 
     def on_grid_item_setup(self, _: Gtk.SignalListItemFactory, list_item: Gtk.ListItem):
-        movie_widget = ElfinMediaCover()
+        movie_widget = ElfinMediaCover(self.client)
         list_item.set_child(movie_widget)
 
     def on_grid_item_bind(self, _: Gtk.SignalListItemFactory, list_item: Gtk.ListItem):
@@ -85,6 +85,7 @@ class ElfinMediaGrid(Gtk.ScrolledWindow):
             movie_widget.set_label(movie_data.name)
             movie_widget.set_year(movie_data.year)
             movie_widget.set_cover(movie_data.cover_art)
+            movie_widget.set_id(movie_data.item_id)
 
     def add_movies(self, children: JellyfinSearchResult):
         while self.movies.get_n_items() > 0:

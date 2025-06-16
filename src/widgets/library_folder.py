@@ -7,9 +7,12 @@ from typing import cast
 import gi
 from jellyfin_apiclient_python import JellyfinClient
 
+from .edit_metadata import ElfinMetadataDialog
+from ..types.jellyfin_metadata import MetadataResult
 from ..types.jellyfin_letter_search import JellyfinSearchResult
 
 gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
 from gi.repository import Gtk, Gio
 
 
@@ -20,12 +23,14 @@ class ElfinLibraryFolder(Gtk.Box):
     category_name: str = ""
     search_category: str = ""
     library_id: str = ""
+    client: JellyfinClient
     icon: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
     label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
 
-    def __init__(self, library_id: str, **kwargs):  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
+    def __init__(self, library_id: str, client: JellyfinClient, **kwargs):  # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
         super().__init__(**kwargs, spacing=6)  # pyright: ignore[reportUnknownArgumentType]
         self.library_id = library_id
+        self.client = client
         action_group = Gio.SimpleActionGroup()
 
         action = Gio.SimpleAction.new("metadata", None)
@@ -43,8 +48,12 @@ class ElfinLibraryFolder(Gtk.Box):
         self.insert_action_group("movie", action_group)
 
     def edit_metadata(self, _action: Gio.SimpleAction, _: None):
-        # TODO
-        print("TODO: Handle editing metadata")
+        metadata = cast(
+            MetadataResult,
+            self.client.jellyfin.get_item(self.library_id),  # pyright: ignore[reportUnknownMemberType]
+        )
+        dialog = ElfinMetadataDialog(metadata, self.client)
+        dialog.present(self.get_parent())
         pass
 
     def edit_images(self, _action: Gio.SimpleAction, _: None):
@@ -79,10 +88,10 @@ class ElfinLibraryFolder(Gtk.Box):
             case _:
                 print(f"Unhandled collection format: {collection}")
 
-    def get_items(self, client: JellyfinClient) -> JellyfinSearchResult:
+    def get_items(self) -> JellyfinSearchResult:
         m: JellyfinSearchResult = cast(
             JellyfinSearchResult,
-            client.jellyfin.get_items_by_letter(  # pyright: ignore[reportUnknownMemberType]
+            self.client.jellyfin.get_items_by_letter(  # pyright: ignore[reportUnknownMemberType]
                 parent_id=self.library_id, media=self.search_category
             ),
         )

@@ -8,6 +8,8 @@
     <file preprocess="xml-stripblanks">gtk/sidebar.ui</file>
     <file preprocess="xml-stripblanks">gtk/initial_setup.ui</file>
     <file preprocess="xml-stripblanks">gtk/media_grid.ui</file>
+    <file preprocess="xml-stripblanks">gtk/edit_metadata.ui</file>
+    <file compressed="true">style.css</file>
     <file preprocess="xml-stripblanks">com.kerembayulgen.elfin.metainfo.xml</file>
   </gresource>
   <gresource prefix="/com/kerembayulgen/elfin/icons/scalable/actions">
@@ -21,5 +23,6 @@
     <file alias="playlist-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/playlist-symbolic.svg</file>
     <file alias="go-home-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/go-home-symbolic.svg</file>
     <file alias="document-edit-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/document-edit-symbolic.svg</file>
+    <file alias="view-more-horizontal-symbolic.svg" preprocess="xml-stripblanks">../data/icons/scalable/actions/view-more-horizontal-symbolic.svg</file>
   </gresource>
 </gresources>

@@ -24,6 +24,8 @@ class ElfinWindow(Adw.ApplicationWindow):
     split: Adw.OverlaySplitView = cast(Adw.OverlaySplitView, Gtk.Template.Child())
     sidebar: ElfinSidebar = cast(ElfinSidebar, Gtk.Template.Child())
     content_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
+    main_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
+    nav_page: Adw.NavigationPage = cast(Adw.NavigationPage, Gtk.Template.Child())
 
     grid_view: ElfinMediaGrid = cast(ElfinMediaGrid, Gtk.Template.Child())
     initial_setup: ElfinInitialSetup = cast(ElfinInitialSetup, Gtk.Template.Child())
@@ -31,19 +33,23 @@ class ElfinWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs) -> None:  # pyright: ignore[reportMissingParameterType, reportUnknownParameterType]
         super().__init__(**kwargs)  # pyright: ignore[reportUnknownArgumentType]
         self.client: JellyfinClient = JellyfinClient()
+        self.on_connect_clicked(None)
+
         action = Gio.SimpleAction.new("open-home", None)
-        _ = action.connect("activate", self.on_about)
+        _ = action.connect("activate", self.on_home)
         self.add_action(action)
         _ = self.initial_setup.connect_button.connect(
             "clicked", self.on_connect_clicked
         )
 
-    def on_about(self, _: None, _x: None) -> None:
-        self.content_stack.set_visible_child(self.initial_setup)
+    def on_home(self, _: None, _x: None) -> None:
+        # TODO
+        print("TODO: Go to home")
 
     def on_connect_clicked(self, _: None) -> None:
         logged_in = self.initial_setup.on_connect_clicked(self.client)
         if logged_in:
+            self.main_stack.set_visible_child(self.split)
             self.sidebar.library_text.set_visible(True)
             self.sidebar.playlist_text.set_visible(True)
             self.grid_view.setup_client(self.client)

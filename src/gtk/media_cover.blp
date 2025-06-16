@@ -29,18 +29,43 @@ template $ElfinMediaCover: Box {
     Label label {
       styles ["caption-heading"]
       margin-top: 9;
-      halign: fill;
-      valign: fill;
+      halign: start;
       wrap-mode: word_char;
       ellipsize: end;
     }
-    Label year {
-      styles ["caption-heading", "dimmed"]
-      margin-top: 4;
-      halign: fill;
-      valign: fill;
-      wrap-mode: word_char;
-      ellipsize: end;
+    Box bottom_box {
+      Label year {
+        styles ["caption-heading", "dimmed"]
+        margin-top: 4;
+        halign: start;
+        hexpand: true;
+        wrap-mode: word_char;
+        ellipsize: end;
+      }
+      [end]
+      MenuButton button {
+        styles ["flat"]
+        halign: end;
+        icon-name: "view-more-horizontal-symbolic";
+        menu-model: item_model;
+      }
+    }
+  }
+}
+
+menu item_model {
+  section {
+    item {
+      label: _("Edit Metadata");
+      action: "item.metadata";
+    }
+    item {
+      label: _("Edit Images");
+      action: "item.images";
+    }
+    item {
+      label: _("Refresh Metadata");
+      action: "item.refresh";
     }
   }
 }

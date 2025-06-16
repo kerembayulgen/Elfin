@@ -10,7 +10,8 @@ blueprints = custom_target('blueprints',
     'gtk/library_folder.blp',
     'gtk/sidebar.blp',
     'gtk/initial_setup.blp',
-    'gtk/media_grid.blp'
+    'gtk/media_grid.blp',
+    'gtk/edit_metadata.blp'
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
@@ -52,9 +53,11 @@ elfin_sources = [
   'widgets/sidebar.py',
   'widgets/initial_setup.py',
   'widgets/media_grid.py',
+  'widgets/edit_metadata.py',
   'types/__init__.py',
   'types/jellyfin_letter_search.py',
-  'types/jellyfin_media_folders.py'
+  'types/jellyfin_media_folders.py',
+  'types/jellyfin_metadata.py'
 ]
 
 install_subdir('widgets', install_dir: moduledir)

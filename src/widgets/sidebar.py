@@ -5,7 +5,6 @@
 # ruff: noqa: E402
 from typing import cast
 from gi.repository import Gtk
-from jellyfin_apiclient_python import JellyfinClient
 
 from .library_folder import ElfinLibraryFolder
 
@@ -29,11 +28,9 @@ class ElfinSidebar(Gtk.Box):
         if not parent:
             return
         window = row.get_root()
-        if window:
-            client: JellyfinClient = cast(JellyfinClient, window.client)  # pyright: ignore[reportAttributeAccessIssue]
-        else:
+        if not window:
             return
-        self.get_display().get_app_launch_context
         parent = cast(ElfinLibraryFolder, parent)
-        items = parent.get_items(client)
+        items = parent.get_items()
+        window.nav_page.set_title(parent.label.get_text())  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType]
         window.grid_view.add_movies(items)  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType]
