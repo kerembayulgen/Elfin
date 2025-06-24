@@ -24,6 +24,7 @@
   ],
   "modules": [
     "python3-jellyfin-apiclient-python.json",
+    "python3-pillow.json",
     "python3-requests.json",
     {
       "name": "elfin",

@@ -6,44 +6,60 @@ using Adw 1;
 
 template $ElfinWindow: Adw.ApplicationWindow {
   title: _("Elfin");
+  width-request: 360;
   default-width: 960;
-  default-height: 720;
+  height-request: 160;
+  default-height: 600;
 
-  content: Stack main_stack {
-    $ElfinInitialSetup initial_setup {}
-    Adw.OverlaySplitView split {
-      sidebar-width-fraction: 0.3;
-      show-sidebar: bind sidebar_toggle.active;
-      sidebar: Adw.NavigationPage {
-        title: "Elfin";
-        $ElfinSidebar sidebar {}
-      };
+  Adw.Breakpoint {
+    condition ("max-width: 500px")
 
-      content: Adw.NavigationPage nav_page {
-        Box content_box {
-          orientation: vertical;
-
-          Adw.HeaderBar content_headerbar {
-            styles ["flat"]
-
-            [end]
-            Button {
-              tooltip-text: _("Shuffle");
-              icon-name: "playlist-shuffle-symbolic";
-            }
-            [start]
-            ToggleButton sidebar_toggle {
-              icon-name: "dock-right-symbolic";
-              tooltip-text: _("Toggle sidebar");
-              active: true;
-            }
-          }
-
-          Stack content_stack {
-            $ElfinMediaGrid grid_view {}
-          }
-        }
-      };
+    setters {
+      split.collapsed: true;
     }
+  }
+
+  content: Adw.NavigationView nav_view {
+    Adw.NavigationPage {
+      Stack main_stack {
+        $ElfinInitialSetup initial_setup {}
+        Adw.OverlaySplitView split {
+          sidebar-width-fraction: 0.3;
+          show-sidebar: bind sidebar_toggle.active;
+          sidebar: Adw.NavigationPage {
+            title: "Elfin";
+            $ElfinSidebar sidebar {}
+          };
+
+          content: Adw.NavigationPage nav_page {
+            Box content_box {
+              orientation: vertical;
+
+              Adw.HeaderBar content_headerbar {
+                styles ["flat"]
+
+                [end]
+                Button {
+                  tooltip-text: _("Shuffle");
+                  icon-name: "playlist-shuffle-symbolic";
+                }
+                [start]
+                ToggleButton sidebar_toggle {
+                  icon-name: "dock-right-symbolic";
+                  tooltip-text: _("Toggle sidebar");
+                  active: true;
+                }
+              }
+
+              Stack content_stack {
+                $ElfinMediaGrid grid_view {}
+                $ElfinHomeScreen home_screen {}
+              }
+            }
+          };
+        }
+      }
+    }
+    $ElfinMediaPage media_page {}
   };
 }

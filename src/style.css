@@ -19,3 +19,9 @@
   padding: 6px;
 }
 
+.gradient-overlay {
+  background: linear-gradient(to bottom,
+              transparent 0%,
+              rgba(0,0,0,0.6) 100%);
+}
+

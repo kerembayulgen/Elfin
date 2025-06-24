@@ -61,6 +61,8 @@ class ElfinInitialSetup(Gtk.Box):
         client.config.data["auth.ssl"] = True  # pyright: ignore[reportUnknownMemberType]
 
         username = self.username.get_text()
+        if username == "":
+            return
         password = self.get_password()
         server_address = self.serveraddress.get_text()
 

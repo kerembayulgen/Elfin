@@ -1,0 +1,16 @@
+[project]
+name = "Elfin"
+version = "0.1.0"
+description = "Browse and play your Jellyfin library"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jellyfin-apiclient-python>=1.11.0",
+    "pillow>=11.2.1",
+    "pygobject>=3.52.3",
+    "requests>=2.32.4",
+]
+
+
+[tool.uv]
+dev-dependencies = ["basedpyright<=1.28.3", "pytest<=8.3.5", "ruff<=0.11.2", "pygobject-stubs>=2.13.0"]

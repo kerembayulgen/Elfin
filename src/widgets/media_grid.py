@@ -7,6 +7,8 @@ from typing import cast
 import gi
 from jellyfin_apiclient_python import JellyfinClient
 
+from .media_page import ElfinMediaPage
+
 from ..types.jellyfin_letter_search import JellyfinSearchResult
 
 from .media_cover import ElfinMediaCover, MediaItem
@@ -101,12 +103,33 @@ class ElfinMediaGrid(Gtk.ScrolledWindow):
         self.get_root().content_stack.set_visible_child(self)  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType, reportOptionalMemberAccess]
         self.movie_grid.set_model(Gtk.NoSelection.new(self.movies))
 
-    def on_movie_clicked(self, _: Gtk.GridView, _i: int):
-        selection_model = self.movie_grid.get_model()
-        if not selection_model:
+    def load_blurred_background(self, index: int):
+        window = self.get_root()
+        if not window:
             return
-        selection_model = cast(Gtk.NoSelection, selection_model)
-        list_model = selection_model.get_model()
-        if not list_model:
+        media_page: ElfinMediaPage = cast(ElfinMediaPage, window.media_page)  # pyright: ignore[reportAttributeAccessIssue]
+        media_item = self.movies.get_item(index)
+        if not media_item:
             return
-        print("TODO: Handle Movie Clicked")
+        media_item = cast(MediaItem, media_item)
+        focused_item = self.movie_grid.get_focus_child()
+        if not focused_item:
+            return
+        first_child = focused_item.get_first_child()
+        if not first_child:
+            return
+        first_child = cast(ElfinMediaCover, first_child)
+        blurred = first_child.get_blurred()
+        if not blurred:
+            return
+        media_page.set_background(blurred)
+
+    def on_movie_clicked(self, _: Gtk.GridView, index: int):
+        window = self.get_root()
+        if not window:
+            return
+        media_page: ElfinMediaPage = cast(ElfinMediaPage, window.media_page)  # pyright: ignore[reportAttributeAccessIssue]
+        if not window:
+            return
+        self.load_blurred_background(index)
+        window.nav_view.push(media_page)  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType]

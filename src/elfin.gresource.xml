@@ -9,6 +9,8 @@
     <file preprocess="xml-stripblanks">gtk/initial_setup.ui</file>
     <file preprocess="xml-stripblanks">gtk/media_grid.ui</file>
     <file preprocess="xml-stripblanks">gtk/edit_metadata.ui</file>
+    <file preprocess="xml-stripblanks">gtk/home_screen.ui</file>
+    <file preprocess="xml-stripblanks">gtk/media_page.ui</file>
     <file compressed="true">style.css</file>
     <file preprocess="xml-stripblanks">com.kerembayulgen.elfin.metainfo.xml</file>
   </gresource>

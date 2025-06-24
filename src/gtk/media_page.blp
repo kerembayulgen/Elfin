@@ -1,0 +1,47 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $ElfinMediaPage: Adw.NavigationPage {
+  Overlay color_overview {
+    [overlay]
+    Box content {
+      orientation: vertical;
+
+      Adw.HeaderBar content_headerbar {
+        styles ["flat"]
+      }
+
+      Box content_box {
+        orientation: vertical;
+        vexpand: true;
+
+        Adw.BreakpointBin {
+          halign: fill;
+          width-request: 150;
+          height-request: 200;
+
+          Adw.Clamp meowl {
+            maximum-size: 1280;
+            tightening-threshold: 1280;
+              Frame banner_frame {
+                height-request: 200;
+                margin-bottom: 400;
+                margin-start: 20;
+                margin-end: 20;
+                Picture banner_image {
+                  content-fit: cover;
+                  opacity: 0.2;
+                  halign: center;
+                  valign: start;
+                }
+              }
+            }
+          }
+      }
+    }
+
+    Picture blurred_cover {
+      keep-aspect-ratio: false;
+    }
+  }
+}

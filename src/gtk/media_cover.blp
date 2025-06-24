@@ -13,14 +13,13 @@ template $ElfinMediaCover: Box {
   width-request: 120;
 
   Box content_box {
-    styles ["vertical"]
     orientation: vertical;
 
     Box image_container {
       Frame image_frame {
         valign: end;
         Picture pic {
-          content-fit: contain;
+          content-fit: fill;
           halign: fill;
         }
       }

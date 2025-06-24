@@ -24,6 +24,7 @@ class ElfinSidebar(Gtk.Box):
         _ = self.library_list.connect("row-activated", self.on_library_changed)
 
     def on_library_changed(self, _: Gtk.ListBox, row: Gtk.ListBoxRow) -> None:
+        self.playlist_list.unselect_all()
         parent = row.get_child()
         if not parent:
             return

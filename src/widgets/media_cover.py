@@ -3,8 +3,10 @@
 
 # pyright: reportMissingModuleSource=false, reportMissingTypeStubs=false
 # ruff: noqa: E402
+from io import BytesIO
 from typing import cast
 import gi
+from PIL import Image, ImageFilter
 from jellyfin_apiclient_python import JellyfinClient
 import requests
 
@@ -36,6 +38,7 @@ class ElfinMediaCover(Gtk.Box):
     label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     pic: Gtk.Picture = cast(Gtk.Picture, Gtk.Template.Child())
     year: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
+    button: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
     item_id: str = ""
     client: JellyfinClient
@@ -76,3 +79,20 @@ class ElfinMediaCover(Gtk.Box):
             self.pic.set_paintable(tex)
         except BaseException as e:
             print(f"DEBUG: {e}")
+
+    def get_blurred(self) -> Gdk.Texture | None:
+        paintable = self.pic.get_paintable()
+        if not paintable:
+            return
+        paintable = cast(Gdk.Texture, paintable)
+        data = paintable.save_to_tiff_bytes().get_data()
+        if not data:
+            return
+        with Image.open(BytesIO(data)) as image:
+            image = image.convert("RGBA")
+            image = image.filter(ImageFilter.GaussianBlur(90))
+            buffer = BytesIO()
+            image.save(buffer, format="TIFF")
+            _ = buffer.seek(0)
+            blurred = Gdk.Texture.new_from_bytes(GLib.Bytes.new(buffer.getvalue()))
+            return blurred
